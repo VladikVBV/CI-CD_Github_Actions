@@ -1,0 +1,39 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest # Select the operating system
+
+    steps:
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17' # Specify the Java version
+          distribution: 'zulu' # Use Eclipse Temurin distribution
+          
+      - name: show Java version
+        run: "java -version"
+        
+      - name: Checkout code
+        uses: actions/checkout@v4
+          
+      - name: Show directory
+        run: 'pwd'
+        
+      - name: List files
+        run: 'ls -al'
+          
+      - name: Install dependencies
+        run: 'mvn compile'
+        
+      - name: Build the app
+        run: 'mvn package -DskipTest'
+
+      - name: Run tests
+        run: 'mvn test'
