@@ -1,9 +1,9 @@
 name: Continuous Integration
 
 on:
-  push:
+  push: # trigger on the push event
     branches:
-      - main
+      - main 
   workflow_dispatch: # Allows manual triggering
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
         run: "java -version"
         
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4 # Clone the project.
           
       - name: Show directory
         run: 'pwd'
@@ -29,11 +29,11 @@ jobs:
       - name: List files
         run: 'ls -al'
           
-      - name: Install dependencies
-        run: 'mvn compile'
+      - name: Install dependencies 
+        run: 'mvn compile' #  Install dependencies
         
-      - name: Build the app
+      - name: Build the app # Create a project build.
         run: 'mvn package -DskipTest'
 
-      - name: Run tests
+      - name: Run tests # Run unit tests.
         run: 'mvn test'
