@@ -3,7 +3,11 @@ name: Continuous Integration
 on:
   push: # trigger on the push event
     branches:
-      - main 
+      - main
+  pull_request:
+    types:
+      - opened
+      - synchronize
   workflow_dispatch: # Allows manual triggering
 
 jobs:
