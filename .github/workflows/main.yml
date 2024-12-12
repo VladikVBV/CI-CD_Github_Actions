@@ -1,27 +1,27 @@
 name: Continuous Integration
 
 on:
-  push: # trigger on the push event
+  push: 
     branches:
       - main
-  workflow_dispatch: # Allows manual triggering
+  workflow_dispatch: 
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest # Select the operating system
+    runs-on: ubuntu-latest 
 
     steps:
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
-          java-version: '17' # Specify the Java version
-          distribution: 'zulu' # Use Eclipse Temurin distribution
+          java-version: '17' 
+          distribution: 'zulu' 
           
       - name: show Java version
         run: "java -version"
         
       - name: Checkout code
-        uses: actions/checkout@v4 # Clone the project.
+        uses: actions/checkout@v4 
           
       - name: Show directory
         run: 'pwd'
@@ -30,10 +30,10 @@ jobs:
         run: 'ls -al'
           
       - name: Install dependencies 
-        run: 'mvn compile' #  Install dependencies
+        run: 'mvn compile' 
         
-      - name: Build the app # Create a project build.
+      - name: Build the app 
         run: 'mvn package -DskipTest'
 
-      - name: Run tests # Run unit tests.
+      - name: Run tests 
         run: 'mvn test'
